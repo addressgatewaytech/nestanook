@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nest a Nook</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Nest a Nook Gifts and Stationery WLL — pre-loved and new books, screen-free puzzles, craft kits and custom book hampers, delivered across Qatar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&family=Caveat:wght@500;700&display=swap">
+<style>
+/* Layout: a gift-wrapped shop — paper ground, kraft "tag" cards on twine, plum ink, rose and sage accents */
+:root{
+  --paper:#FBF6F1; --paper-2:#F3EADF; --card:#FFFDFA; --kraft:#C9A47C; --kraft-2:#E8D6BF;
+  --ink:#38232E; --ink-soft:#6E5761; --rose:#B9586E; --rose-soft:#F4DCE1; --sage:#6F8A73; --sage-soft:#DFE8DF;
+  --line:#E6D9CB; --shadow:0 1px 2px rgba(56,35,46,.06),0 8px 24px -12px rgba(56,35,46,.18);
+  --display:"Young Serif",Georgia,"Times New Roman",serif;
+  --body:"Nunito Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Caveat","Segoe Print","Comic Sans MS",cursive;
+  --r:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#1E1519; --paper-2:#281C22; --card:#2C2026; --kraft:#B48E67; --kraft-2:#4A3A2E;
+  --ink:#F4E9EC; --ink-soft:#C3AEB6; --rose:#E68FA3; --rose-soft:#4A2A33; --sage:#9DB8A1; --sage-soft:#2C3A2E;
+  --line:#3E2F36; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#1E1519; --paper-2:#281C22; --card:#2C2026; --kraft:#B48E67; --kraft-2:#4A3A2E;
+  --ink:#F4E9EC; --ink-soft:#C3AEB6; --rose:#E68FA3; --rose-soft:#4A2A33; --sage:#9DB8A1; --sage-soft:#2C3A2E;
+  --line:#3E2F36; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.15;text-wrap:balance;margin:0}
+p{margin:0}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.hand{font-family:var(--hand);font-size:1.45rem;color:var(--rose);line-height:1}
+.eyebrow{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--sage)}
+button,.btn{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:6px}
+.btn{display:inline-flex;align-items:center;gap:.5rem;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);padding:.72rem 1.3rem;border-radius:999px;font-weight:700;font-size:.95rem;text-decoration:none;transition:transform .15s ease,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.rose{background:var(--rose);border-color:var(--rose);color:#fff}
+.btn.wa{background:#1FA855;border-color:#1FA855;color:#fff}.btn.wa:hover{background:#178F47;border-color:#178F47}.btn.sm{padding:.5rem 1rem;font-size:.88rem}
+
+/* Top bar */
+.notice{background:var(--ink);color:var(--paper);font-size:.82rem;text-align:center;padding-block:.45rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.8rem}
+.logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.logo svg{flex:none}
+.logo b{font-family:var(--display);font-weight:400;font-size:1.35rem;letter-spacing:.01em}
+.logo small{display:block;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-top:-2px}
+.links{display:flex;gap:1.4rem;align-items:center}
+.links a{text-decoration:none;font-weight:600;font-size:.95rem;color:var(--ink-soft)}
+.links a.on,.links a:hover{color:var(--ink)}
+.links a.on{box-shadow:0 2px 0 var(--rose)}
+.cartbtn{position:relative;display:inline-flex;align-items:center;gap:.4rem;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:.45rem .9rem;color:var(--ink);font-weight:700;text-decoration:none}
+.cartbtn{color:var(--sage)}.cartbtn .count{background:var(--rose);color:#fff;border-radius:999px;min-width:1.35rem;height:1.35rem;display:inline-grid;place-items:center;font-size:.75rem;padding:0 .3rem}
+.menu{display:none;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:.45rem .6rem;color:var(--ink)}
+@media (max-width:860px){
+  .links{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:0;background:var(--paper);border-bottom:1px solid var(--line);padding:.5rem max(16px,env(safe-area-inset-right,0px)) 1rem max(16px,env(safe-area-inset-left,0px))}
+  .links.open{display:flex}
+  .links a{padding:.7rem 0;border-bottom:1px dashed var(--line)}
+  .links a.on{box-shadow:none;color:var(--rose)}
+  .menu{display:inline-flex}
+}
+
+/* Views */
+.view{display:none}
+.view.on{display:block;animation:rise .35s ease both}
+@keyframes rise{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.view.on{animation:none}.btn{transition:none}}
+section{padding-block:clamp(2.5rem,6vw,4.5rem)}
+
+/* Hero */
+.hero{padding-block:clamp(2rem,5vw,3.5rem) clamp(2.5rem,6vw,4.5rem)}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+.hero h1{font-size:clamp(2.3rem,5.4vw,4.1rem);margin:.6rem 0 1rem}
+.hero h1 em{font-style:normal;color:var(--rose)}
+.hero p.lede{font-size:1.12rem;color:var(--ink-soft);max-width:34rem}
+.hero .ctas{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.6rem}
+.badges{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;margin-top:1.8rem;font-size:.88rem;color:var(--ink-soft)}
+.badges span::before{content:"✿ ";color:var(--sage)}
+.collage{position:relative;min-height:440px}
+.collage figure{position:absolute;margin:0;background:var(--card);padding:10px 10px 34px;box-shadow:var(--shadow);border-radius:4px}
+.collage img{display:block;width:100%;height:100%;object-fit:cover;border-radius:2px}
+.collage figcaption{position:absolute;bottom:6px;left:0;right:0;text-align:center;font-family:var(--hand);font-size:1.2rem;color:var(--ink-soft)}
+.collage .a{width:58%;aspect-ratio:4/5;left:0;top:4%;transform:rotate(-4deg)}
+.collage .b{width:50%;aspect-ratio:1/1;right:0;top:0;transform:rotate(3.5deg)}
+.collage .c{width:46%;aspect-ratio:4/5;right:8%;bottom:0;transform:rotate(-1.5deg);z-index:2}
+.seal{position:absolute;left:44%;bottom:6%;z-index:3;width:92px;height:92px;border-radius:50%;background:var(--rose);color:#fff;display:grid;place-items:center;text-align:center;font-family:var(--hand);font-size:1.15rem;line-height:1;box-shadow:inset 0 0 0 5px rgba(255,255,255,.18),var(--shadow);transform:rotate(-10deg)}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.collage{min-height:0;aspect-ratio:1/1;max-width:520px;width:100%;margin-inline:auto}}
+
+/* Strip */
+.strip{background:var(--paper-2);border-block:1px solid var(--line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;padding-block:1.4rem}
+.strip div{display:flex;gap:.7rem;align-items:flex-start;min-width:0}
+.strip b{display:block;font-size:.95rem}
+.strip small{color:var(--ink-soft);font-size:.84rem;line-height:1.4;display:block}
+.strip i{font-style:normal;font-size:1.3rem;line-height:1;color:var(--rose)}
+@media (max-width:860px){.strip .wrap{grid-template-columns:1fr 1fr}}
+@media (max-width:460px){.strip .wrap{grid-template-columns:1fr}}
+
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin-bottom:1.8rem}
+.head h2{font-size:clamp(1.8rem,3.6vw,2.6rem);margin-top:.3rem}
+.head p{color:var(--ink-soft);max-width:36rem}
+
+/* Product tag cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.6rem}
+.tag{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .2s ease}
+.tag:hover{transform:translateY(-3px)}
+.tag .ph{position:relative;aspect-ratio:4/3.6;overflow:hidden;background:var(--paper-2)}
+.tag .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.tag .twine{position:absolute;top:12px;right:14px;background:var(--kraft-2);color:#4b3622;font-family:var(--hand);font-size:1.15rem;padding:.15rem .8rem .15rem 1.4rem;border-radius:4px 10px 10px 4px;clip-path:polygon(12px 0,100% 0,100% 100%,12px 100%,0 50%)}
+.tag .twine::before{content:"";position:absolute;left:9px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:var(--card)}
+.tag .body{padding:1.1rem 1.2rem 1.25rem;display:flex;flex-direction:column;gap:.55rem;flex:1}
+.tag h3{font-size:1.25rem}
+.tag p{color:var(--ink-soft);font-size:.92rem;line-height:1.5}
+.tag .chips{display:flex;flex-wrap:wrap;gap:.35rem}
+.chip{font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:.2rem .55rem;border-radius:999px;background:var(--sage-soft);color:var(--sage)}
+.chip.r{background:var(--rose-soft);color:var(--rose)}
+.tag .foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding-top:.6rem;border-top:1px dashed var(--line)}
+.price{font-weight:700;font-variant-numeric:tabular-nums}
+.price small{font-weight:600;color:var(--ink-soft);font-size:.78rem;display:block;line-height:1}
+
+/* Purpose band */
+.purpose{background:var(--sage-soft)}
+.purpose .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+.purpose img{width:100%;border-radius:var(--r);box-shadow:var(--shadow);display:block;aspect-ratio:1/1;object-fit:cover}
+.purpose h2{font-size:clamp(1.8rem,3.6vw,2.6rem);margin:.4rem 0 1rem}
+.purpose ul{list-style:none;padding:0;margin:1.2rem 0 0;display:grid;gap:.75rem}
+.purpose li{display:flex;gap:.7rem;align-items:flex-start}
+.purpose li b{display:block}
+.purpose li span{color:var(--ink-soft);font-size:.93rem}
+.dot{flex:none;width:28px;height:28px;border-radius:50%;background:var(--card);display:grid;place-items:center;color:var(--sage);font-weight:700;font-size:.85rem;border:1px solid var(--line)}
+@media (max-width:860px){.purpose .wrap{grid-template-columns:1fr}}
+
+/* Gallery */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.gallery figure{margin:0;border-radius:var(--r);overflow:hidden;aspect-ratio:3/4;background:var(--paper-2);position:relative}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery figcaption{position:absolute;left:10px;bottom:10px;background:var(--card);color:var(--ink);font-family:var(--hand);font-size:1.15rem;padding:.1rem .6rem;border-radius:6px}
+@media (max-width:760px){.gallery{grid-template-columns:1fr 1fr}}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.3rem}
+.step .n{font-family:var(--hand);font-size:2rem;color:var(--rose);line-height:1}
+.step h3{font-size:1.15rem;margin:.4rem 0 .3rem}
+.step p{color:var(--ink-soft);font-size:.92rem}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
+
+/* Shop filters */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.6rem}
+.filters button{border:1.5px solid var(--line);background:var(--card);color:var(--ink-soft);border-radius:999px;padding:.45rem 1rem;font-weight:600;font-size:.9rem}
+.filters button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* Product detail */
+.pd{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:start}
+.pd img{width:100%;border-radius:var(--r);display:block;box-shadow:var(--shadow);aspect-ratio:4/4.4;object-fit:cover}
+.pd h1{font-size:clamp(1.9rem,4vw,2.8rem);margin:.4rem 0 .8rem}
+.pd .desc{color:var(--ink-soft);font-size:1.03rem}
+.pd .incl{margin:1.2rem 0;padding:1rem 1.2rem;background:var(--paper-2);border-radius:var(--r);border:1px dashed var(--kraft)}
+.pd .incl ul{margin:.4rem 0 0;padding-left:1.1rem;color:var(--ink-soft);font-size:.94rem}
+.field{display:grid;gap:.35rem;margin-bottom:1rem}
+.field label{font-weight:700;font-size:.88rem}
+.opts{display:flex;flex-wrap:wrap;gap:.5rem}
+.opts label{cursor:pointer}
+.opts input{position:absolute;opacity:0;pointer-events:none}
+.opts span{display:inline-block;border:1.5px solid var(--line);border-radius:10px;padding:.5rem .9rem;font-weight:600;font-size:.9rem;background:var(--card)}
+.opts input:checked+span{border-color:var(--rose);color:var(--rose);background:var(--rose-soft)}
+.opts input:focus-visible+span{outline:2px solid var(--rose);outline-offset:2px}
+input[type=text],input[type=tel],input[type=email],textarea,select{font:inherit;width:100%;padding:.7rem .85rem;border-radius:10px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+textarea{min-height:90px;resize:vertical}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;background:var(--card)}
+.qty button{border:0;background:transparent;width:38px;height:38px;color:var(--ink);font-size:1.1rem}
+.qty output{min-width:2rem;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
+.big-price{font-size:1.6rem;font-weight:700;font-variant-numeric:tabular-nums;margin:.2rem 0 1rem}
+.back{display:inline-block;margin-bottom:1.2rem;text-decoration:none;font-weight:600;color:var(--ink-soft)}
+@media (max-width:860px){.pd{grid-template-columns:1fr}}
+
+/* Cart */
+.cart{display:grid;grid-template-columns:1.4fr 1fr;gap:2rem;align-items:start}
+.line{display:grid;grid-template-columns:72px 1fr auto;gap:1rem;align-items:center;padding:1rem 0;border-bottom:1px dashed var(--line)}
+.line img{width:72px;height:72px;object-fit:cover;border-radius:10px}
+.line .meta{min-width:0}
+.line .meta b{display:block}
+.line .meta small{color:var(--ink-soft)}
+.line .right{text-align:right;display:grid;gap:.3rem;justify-items:end}
+.link{border:0;background:none;color:var(--rose);font-weight:700;padding:0;font-size:.85rem;text-decoration:underline}
+.box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.4rem;box-shadow:var(--shadow)}
+.sum{display:flex;justify-content:space-between;padding:.35rem 0;font-variant-numeric:tabular-nums}
+.sum.t{border-top:1px solid var(--line);margin-top:.5rem;padding-top:.8rem;font-weight:700;font-size:1.1rem}
+.empty{text-align:center;padding:3rem 1rem;background:var(--card);border:1px dashed var(--kraft);border-radius:var(--r)}
+.check{display:flex;gap:.6rem;align-items:flex-start;font-size:.88rem;color:var(--ink-soft);margin:.4rem 0 1rem}
+.check input{margin-top:.3rem;accent-color:var(--rose)}
+.note{font-size:.82rem;color:var(--ink-soft);margin-top:.8rem}
+.err{color:var(--rose);font-size:.85rem;font-weight:600;min-height:1.2em}
+@media (max-width:860px){.cart{grid-template-columns:1fr}}
+
+/* About */
+.about-hero{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+.about-hero img{width:100%;border-radius:var(--r);box-shadow:var(--shadow);display:block}
+.prose{max-width:68ch}
+.prose p{margin-bottom:1rem;color:var(--ink-soft);font-size:1.04rem}
+.prose p:first-of-type{color:var(--ink);font-size:1.15rem}
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.value{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.2rem}
+.value .hand{font-size:1.6rem}
+.value p{color:var(--ink-soft);font-size:.92rem;margin-top:.4rem}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--card)}
+.facts div{padding:1rem 1.2rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 -1px -1px 0;min-width:0}
+.facts dt{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+.facts dd{margin:.2rem 0 0;font-weight:700;overflow-wrap:anywhere}
+@media (max-width:860px){.about-hero{grid-template-columns:1fr}.values{grid-template-columns:1fr 1fr}}
+@media (max-width:460px){.values{grid-template-columns:1fr}}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:1fr 1.2fr;gap:2rem;align-items:start}
+.cline{display:flex;gap:.8rem;align-items:center;padding:1rem 0;border-bottom:1px dashed var(--line)}
+.cline .ic{width:42px;height:42px;border-radius:50%;background:var(--rose-soft);color:var(--rose);display:grid;place-items:center;flex:none;font-weight:700}
+.cline small{display:block;color:var(--ink-soft);font-size:.8rem}
+.cline b{overflow-wrap:anywhere;user-select:all}
+.cline .copy{margin-left:auto}
+@media (max-width:860px){.contact{grid-template-columns:1fr}}
+
+/* Legal */
+.legal{display:grid;grid-template-columns:230px 1fr;gap:2.5rem;align-items:start}
+.legal nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 90px);display:grid;gap:.2rem}
+.legal nav a{text-decoration:none;padding:.55rem .8rem;border-radius:10px;font-weight:600;color:var(--ink-soft);font-size:.94rem}
+.legal nav a.on{background:var(--rose-soft);color:var(--rose)}
+.doc{max-width:72ch;min-width:0}
+.doc h1{font-size:clamp(1.9rem,4vw,2.6rem);margin:.3rem 0 .4rem}
+.doc .upd{color:var(--ink-soft);font-size:.88rem;margin-bottom:1.6rem}
+.doc h2{font-size:1.25rem;margin:1.8rem 0 .5rem}
+.doc p,.doc li{color:var(--ink-soft);font-size:.98rem}
+.doc p{margin-bottom:.8rem}
+.doc ul{padding-left:1.2rem;margin:0 0 .8rem}
+.doc li{margin-bottom:.35rem}
+.doc strong{color:var(--ink)}
+.doc .reg{background:var(--paper-2);border:1px dashed var(--kraft);border-radius:var(--r);padding:1rem 1.2rem;margin-bottom:1.4rem;font-size:.93rem}
+@media (max-width:860px){.legal{grid-template-columns:1fr}.legal nav{position:static;display:flex;flex-wrap:wrap}}
+
+/* Footer */
+footer{background:#38232E;color:#FBF6F1;margin-top:2rem}
+:root[data-theme="dark"] footer{background:#140D10}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) footer{background:#140D10}}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2rem;padding-block:3rem 2rem}
+footer h4{margin:0 0 .8rem;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+footer a{display:block;text-decoration:none;opacity:.88;padding:.18rem 0;font-size:.94rem}
+footer a:hover{opacity:1;text-decoration:underline}
+footer p{opacity:.8;font-size:.92rem}
+footer .logo b,footer .logo small,footer a,footer p,footer h4{color:#FBF6F1}
+footer .legalbar{border-top:1px solid rgba(255,255,255,.14);padding-block:1.1rem;font-size:.8rem;opacity:.75;display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;justify-content:space-between}
+@media (max-width:860px){footer .wrap{grid-template-columns:1fr 1fr}}
+@media (max-width:460px){footer .wrap{grid-template-columns:1fr}}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;background:var(--ink);color:var(--paper);padding:.7rem 1.2rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s;z-index:80;pointer-events:none;max-width:calc(100% - 32px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
+<div class="notice">Enquire on WhatsApp +974 3118 4426 · Delivery across Qatar</div>
+<header class="top">
+  <div class="wrap nav">
+    <a class="logo" href="#home" aria-label="Nest a Nook home">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="var(--rose-soft)"/><path d="M9 25c3-2 7-3 11-3s8 1 11 3c-2 4-6 6-11 6s-9-2-11-6Z" fill="var(--kraft)"/><path d="M10 25c3 1.6 6.4 2.3 10 2.3S27 26.6 30 25" stroke="var(--ink)" stroke-width="1.2" fill="none"/><path d="M14 21V12.5c2 0 4.5.6 6 2 1.5-1.4 4-2 6-2V21c-2 0-4.5.6-6 2-1.5-1.4-4-2-6-2Z" fill="var(--card)" stroke="var(--ink)" stroke-width="1.2" stroke-linejoin="round"/><path d="M20 14.5V23" stroke="var(--ink)" stroke-width="1.2"/></svg>
+      <span><b>Nest a Nook</b><small>Gifts &amp; Stationery</small></span>
+    </a>
+    <nav class="links" id="links">
+      <a href="#home" data-nav="home">Home</a>
+      <a href="#shop" data-nav="shop">Shop</a>
+      <a href="#about" data-nav="about">About Us</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+      <a href="#terms" data-nav="legal">Policies</a>
+    </nav>
+    <div style="display:flex;gap:.5rem;align-items:center">
+      <a class="cartbtn" href="https://wa.me/97431184426" target="_blank" rel="noopener" aria-label="Enquire on WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span>WhatsApp</span></a>
+      <button class="menu" id="menu" aria-label="Menu" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HOME -->
+<div class="view" id="v-home">
+  <section class="hero"><div class="wrap hero-grid">
+    <div>
+      <span class="hand">gifts with a purpose</span>
+      <h1>Books, puzzles &amp; hampers that give stories a <em>second life</em>.</h1>
+      <p class="lede">A Qatar-based shop for pre-loved and new books, screen-free brain games, craft kits for kids and custom reader's hampers. Thoughtful, budget-friendly and kind to the planet.</p>
+      <div class="ctas"><a class="btn" href="#shop">Shop the collection</a><a class="btn wa" href="https://wa.me/97431184426" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>Enquire on WhatsApp</a></div>
+      <div class="badges"><span>Pre-loved &amp; new</span><span>Screen-free play</span><span>Delivered across Qatar</span></div>
+    </div>
+    <div class="collage" aria-hidden="true">
+      <figure class="a"><img src="images/p3.jpg" alt=""><figcaption>book bouquets</figcaption></figure>
+      <figure class="b"><img src="images/p8.jpg" alt=""><figcaption>wrapped with care</figcaption></figure>
+      <figure class="c"><img src="images/p6.jpg" alt=""><figcaption>"you are so special"</figcaption></figure>
+      <div class="seal">just one<br>more<br>chapter</div>
+    </div>
+  </div></section>
+
+  <div class="strip"><div class="wrap">
+    <div><i>♻</i><span><b>Second-life books</b><small>Graded, cleaned and ready for a new reader</small></span></div>
+    <div><i>✎</i><span><b>Fully customizable</b><small>Pick the book, tabs, bookmarks and extras</small></span></div>
+    <div><i>☼</i><span><b>Screen-free learning</b><small>Puzzles, STEM kits and plaster painting</small></span></div>
+    <div><i>⌂</i><span><b>Qatar-wide delivery</b><small>Timings confirmed on WhatsApp</small></span></div>
+  </div></div>
+
+  <section><div class="wrap">
+    <div class="head"><div><span class="eyebrow">The collection</span><h2>Five ways to gift a good story</h2></div><a class="btn ghost sm" href="#shop">View all</a></div>
+    <div class="grid" id="home-grid"></div>
+  </div></section>
+
+  <section class="purpose"><div class="wrap">
+    <img src="images/p7.jpg" alt="Kraft gift boxes with mugs, candles and reading treats">
+    <div>
+      <span class="eyebrow">Gifts with a Purpose</span>
+      <h2>Meaningful gifting that doesn't cost the earth</h2>
+      <p style="color:var(--ink-soft)">Every box mixes pre-loved and new pieces, so you give more for less and keep good books in circulation.</p>
+      <ul>
+        <li><span class="dot">1</span><span><b>Inspire lifelong reading</b><span>Curated picks for adults and young learners.</span></span></li>
+        <li><span class="dot">2</span><span><b>Reduce screen time</b><span>Hands-on puzzles and craft that keep little minds busy.</span></span></li>
+        <li><span class="dot">3</span><span><b>Teach smart spending</b><span>Pre-loved choices show kids that value isn't only "new".</span></span></li>
+      </ul>
+      <div style="margin-top:1.6rem"><a class="btn" href="#product-purpose">Shop the Purpose Box</a></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="head"><div><span class="eyebrow">How a custom hamper works</span><h2>Made to order, in three steps</h2></div></div>
+    <div class="steps">
+      <div class="step"><div class="n">one</div><h3>Choose a book</h3><p>Tell us the reader's age and genre, or pick a title. New or pre-loved.</p></div>
+      <div class="step"><div class="n">two</div><h3>Add the extras</h3><p>Bookmarks, highlighters, book tabs, a mini candle or an activity kit.</p></div>
+      <div class="step"><div class="n">three</div><h3>Enquire &amp; we deliver</h3><p>Send your wishlist on WhatsApp. We confirm, wrap and deliver anywhere in Qatar.</p></div>
+    </div>
+  </div></section>
+
+  <section style="padding-top:0"><div class="wrap">
+    <div class="head"><div><span class="eyebrow">From our nook</span><h2>Recently wrapped</h2></div></div>
+    <div class="gallery">
+      <figure><img src="images/p1.jpg" alt="Pink book bouquet with classic novels"><figcaption>blush bouquet</figcaption></figure>
+      <figure><img src="images/p9.jpg" alt="Kraft stationery packs with pens and tabs"><figcaption>reader's kit</figcaption></figure>
+      <figure><img src="images/p5.jpg" alt="White plaster of Paris shapes on mini easels"><figcaption>paint-your-own</figcaption></figure>
+      <figure><img src="images/p2.jpg" alt="Wooden STEM educational DIY models"><figcaption>STEM builds</figcaption></figure>
+    </div>
+  </div></section>
+</div>
+
+<!-- SHOP -->
+<div class="view" id="v-shop"><section><div class="wrap">
+  <div class="head"><div><span class="eyebrow">Shop</span><h2>All products</h2></div><p>Tap Enquire to ask about availability, options and pricing on WhatsApp. Pre-loved items are inspected and graded.</p></div>
+  <div class="filters" id="filters">
+    <button data-f="all" class="on">All</button><button data-f="books">Books</button><button data-f="play">Puzzles &amp; Craft</button><button data-f="gift">Hampers &amp; Gifts</button>
+  </div>
+  <div class="grid" id="shop-grid"></div>
+</div></section></div>
+
+<!-- PRODUCT -->
+<div class="view" id="v-product"><section><div class="wrap" id="pd"></div></section></div>
+
+
+<!-- ABOUT -->
+<div class="view" id="v-about">
+  <section><div class="wrap about-hero">
+    <div class="prose">
+      <span class="eyebrow">About Nest a Nook</span>
+      <h1 style="font-size:clamp(2rem,4.6vw,3.2rem);margin:.4rem 0 1.2rem">Reading, learning and gifting, done kindly.</h1>
+      <p>At Nest a Nook, we believe reading, learning, and gifting should be meaningful, cost-effective, and kind to our planet. Based in Qatar, Nest a Nook is a sustainable e-commerce destination offering a carefully chosen mix of pre-loved and new books, educational puzzles, interactive games, creative craft kits, and custom-tailored book hampers for readers and learners of all ages.</p>
+      <p>Our mission is centered on "Gifts with a Purpose": providing budget-friendly, sustainable options that encourage smart financial thinking in kids, inspire lifelong reading, and give pre-loved books and toys a second life. We place a strong emphasis on reducing screen time for children by offering hands-on, mind-expanding activities like skill-building puzzles and Plaster of Paris painting sets.</p>
+      <p>From fully customizable gift boxes equipped with bookmarks, study accessories, and cozy touches to engaging learning tools, every package from Nest a Nook is designed to foster creativity, screen-free enjoyment, and mindful living.</p>
+    </div>
+    <img src="images/p4.jpg" alt="A spread of new and pre-loved books">
+  </div></section>
+  <section style="padding-top:0"><div class="wrap">
+    <div class="values">
+      <div class="value"><span class="hand">second life</span><p>Pre-loved books and toys get cleaned, graded and passed on.</p></div>
+      <div class="value"><span class="hand">screen-free</span><p>Play that builds focus, fine motor skills and critical thinking.</p></div>
+      <div class="value"><span class="hand">budget-kind</span><p>Thoughtful gifts at prices that make sense for families.</p></div>
+      <div class="value"><span class="hand">made for you</span><p>Every hamper is put together to the reader's taste.</p></div>
+    </div>
+  </div></section>
+  <section style="padding-top:0"><div class="wrap">
+    <div class="head"><div><span class="eyebrow">Company profile</span><h2>Registered in the State of Qatar</h2></div></div>
+    <dl class="facts" style="margin:0">
+      <div><dt>Legal name</dt><dd>Nest a Nook Gifts and Stationery WLL</dd></div>
+      <div><dt>Commercial Registration</dt><dd>CR No. 256542</dd></div>
+      <div><dt>Website</dt><dd>nestanook.qa</dd></div>
+      <div><dt>Email</dt><dd>nestanook@gmail.com</dd></div>
+      <div><dt>Phone / WhatsApp</dt><dd>+974 3118 4426</dd></div>
+      <div><dt>Country</dt><dd>Doha, State of Qatar</dd></div>
+    </dl>
+  </div></section>
+</div>
+
+<!-- CONTACT -->
+<div class="view" id="v-contact"><section><div class="wrap contact">
+  <div>
+    <span class="eyebrow">Contact</span>
+    <h1 style="font-size:clamp(2rem,4.4vw,3rem);margin:.4rem 0 .8rem">Say hello to the nook</h1>
+    <p style="color:var(--ink-soft)">Questions about an order, a custom hamper or donating pre-loved books? We usually reply within one working day (Sat–Thu, 9am–8pm).</p>
+    <div style="margin-top:1rem">
+      <div class="cline"><span class="ic">@</span><span><small>Email</small><b>nestanook@gmail.com</b></span><button class="btn ghost sm copy" data-copy="nestanook@gmail.com">Copy</button></div>
+      <div class="cline"><span class="ic">☏</span><span><small>Phone &amp; WhatsApp</small><b>+974 3118 4426</b></span><button class="btn ghost sm copy" data-copy="+97431184426">Copy</button></div>
+      <div class="cline"><span class="ic">⌂</span><span><small>Company</small><b>Nest a Nook Gifts and Stationery WLL · CR 256542 · Doha, Qatar</b></span></div>
+    </div>
+    <div style="margin-top:1.4rem"><a class="btn wa" href="https://wa.me/97431184426" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>Chat on WhatsApp</a></div>
+  </div>
+  <form class="box" id="cform" novalidate>
+    <h3 style="font-size:1.35rem;margin-bottom:1rem">Send us a message</h3>
+    <div class="field"><label for="c-name">Name</label><input type="text" id="c-name" required></div>
+    <div class="field"><label for="c-phone">Mobile number</label><input type="tel" id="c-phone" placeholder="+974"></div>
+    <div class="field"><label for="c-topic">Topic</label><select id="c-topic"><option>Order question</option><option>Custom hamper request</option><option>Return or refund</option><option>Donate / sell pre-loved books</option><option>Corporate gifting</option></select></div>
+    <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" required></textarea></div>
+    <p class="err" id="c-err"></p>
+    <button class="btn" type="submit">Send via WhatsApp</button>
+    <p class="note">Opens WhatsApp with your message ready to send to +974 3118 4426.</p>
+  </form>
+</div></section></div>
+
+<!-- LEGAL -->
+<div class="view" id="v-legal"><section><div class="wrap legal">
+  <nav id="legalnav">
+    <a href="#terms" data-doc="terms">Terms &amp; Conditions</a>
+    <a href="#privacy" data-doc="privacy">Privacy Policy</a>
+    <a href="#refund" data-doc="refund">Return &amp; Refund Policy</a>
+    <a href="#shipping" data-doc="shipping">Shipping &amp; Delivery</a>
+  </nav>
+  <article class="doc" id="doc"></article>
+</div></section></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#home" style="padding:0;opacity:1"><span><b>Nest a Nook</b><small>Gifts &amp; Stationery</small></span></a>
+      <p style="margin-top:.8rem">Pre-loved and new books, screen-free games, craft kits and custom hampers. Gifts with a purpose, from Qatar.</p>
+    </div>
+    <div><h4>Shop</h4><a href="#product-books">Book Collection</a><a href="#product-puzzles">Puzzles &amp; Brain Games</a><a href="#product-plaster">Plaster Painting Kits</a><a href="#product-hamper">Reader's Hamper</a><a href="#product-purpose">Purpose Hamper Box</a></div>
+    <div><h4>Help</h4><a href="#about">About Us</a><a href="#contact">Contact</a><a href="#terms">Terms &amp; Conditions</a><a href="#privacy">Privacy Policy</a><a href="#refund">Return &amp; Refund</a><a href="#shipping">Shipping &amp; Delivery</a></div>
+    <div><h4>Get in touch</h4><p>nestanook@gmail.com</p><p>+974 3118 4426</p><p style="margin-top:.6rem"><a href="https://wa.me/97431184426" target="_blank" rel="noopener" style="text-decoration:underline">Enquire on WhatsApp</a></p></div>
+  </div>
+  <div class="wrap legalbar"><span>© <span id="yr">2026</span> Nest a Nook Gifts and Stationery WLL · CR No. 256542 · State of Qatar</span><span>nestanook.qa</span></div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const IMG={p1:"images/p1.jpg",p2:"images/p2.jpg",p3:"images/p3.jpg",p4:"images/p4.jpg",p5:"images/p5.jpg",p6:"images/p6.jpg",p7:"images/p7.jpg",p8:"images/p8.jpg",p9:"images/p9.jpg"};
+const PRODUCTS=[
+ {id:"books",cat:"books",name:"Pre-Loved & New Book Collection",tag:"for every reader",img:"p4",
+  desc:"A curated selection of high-quality new and pre-loved books spanning multiple genres, catering to both adult readers and young learners to promote affordable reading and sustainable habits.",
+  chips:["Adults","Young learners","Multi-genre"],
+  incl:["Fiction, non-fiction, self-help and classics","Children's picture books and early readers","Pre-loved copies graded Like New / Very Good / Good"],
+  opts:{label:"Condition",list:["Pre-loved","New"]}},
+ {id:"puzzles",cat:"play",name:"Educational Puzzles & Screen-Free Brain Games",tag:"screen-free",img:"p2",
+  desc:"Pre-loved and new cognitive puzzles, strategy games, and educational board games for all age groups designed to stimulate critical thinking and actively reduce children's screen time through engaging play.",
+  chips:["All ages","STEM","Strategy"],
+  incl:["Jigsaw and logic puzzles","Wooden STEM DIY models","Strategy and educational board games"],
+  opts:{label:"Condition",list:["Pre-loved","New"]}},
+ {id:"plaster",cat:"play",name:"Plaster of Paris Painting Kits for Kids",tag:"paint-your-own",img:"p5",
+  desc:"Creative, hands-on craft kits featuring moldable plaster shapes and paints that foster artistic expression, fine motor skills, and an entertaining, screen-free, tactile experience for children.",
+  chips:["Ages 4+","Fine motor skills","Craft"],
+  incl:["Plaster of Paris shapes (animals, space, vehicles)","Non-toxic paints and brushes","Mini display easels"],
+  opts:{label:"Kit size",list:["Mini (3 shapes)","Party (6 shapes)"]}},
+ {id:"hamper",cat:"gift",name:"Customizable Reader's Book Hamper",tag:"made to order",img:"p9",
+  desc:"A fully customizable gift package containing a book of choice (new or pre-loved), artisan bookmarks, reading highlighters, book tabs, and related reading accessories tailored to individual customer preferences.",
+  chips:["Custom","Gift-wrapped","Handwritten tag"],
+  incl:["One book of your choice (new or pre-loved)","Artisan bookmarks","Reading highlighters and book tabs","Related reading accessories"],
+  opts:{label:"Book",list:["With pre-loved book","With new book"]},custom:true},
+ {id:"purpose",cat:"gift",name:"“Gifts with a Purpose” Sustainable Hamper Box",tag:"eco gift box",img:"p7",
+  desc:"An eco-friendly, cost-effective gift box featuring curated books (new or pre-loved), educational activity items, reading tools, and optional cozy lifestyle accents like a mini scented candle for a complete reading experience.",
+  chips:["Eco-friendly","Curated","Cozy extras"],
+  incl:["Curated books (new or pre-loved)","Educational activity items","Reading tools","Optional mini scented candle"],
+  opts:{label:"Box",list:["Classic box","Classic + mini candle"]},custom:true}
+];
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+
+function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("show"),1900)}
+
+const WA="https://wa.me/97431184426?text=";
+function waLink(p,opt,note){return WA+encodeURIComponent(`Hello Nest a Nook, I'd like to enquire about:\n\n${p.name}${opt?`\nOption: ${opt}`:""}${note?`\nPreferences: ${note}`:""}\n\nPlease share availability and details. Thank you!`)}
+function card(p){
+ return `<article class="tag"><a href="#product-${p.id}" class="ph" aria-label="${esc(p.name)}"><img src="${IMG[p.img]}" alt="${esc(p.name)}" loading="lazy"><span class="twine">${p.tag}</span></a>
+ <div class="body"><h3><a href="#product-${p.id}" style="text-decoration:none">${esc(p.name)}</a></h3><p>${esc(p.desc.split(/(?<=\.)\s/)[0].slice(0,120))}${p.desc.length>120?"…":""}</p>
+ <div class="chips">${p.chips.map((c,i)=>`<span class="chip ${i==0?"r":""}">${c}</span>`).join("")}</div>
+ <div class="foot"><a class="btn ghost sm" href="#product-${p.id}">Details</a><a class="btn wa sm" href="${waLink(p)}" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>WhatsApp</a></div></div></article>`}
+$("#home-grid").innerHTML=PRODUCTS.map(card).join("");
+function renderShop(f){$("#shop-grid").innerHTML=PRODUCTS.filter(p=>f=="all"||p.cat==f).map(card).join("")}
+renderShop("all");
+$("#filters").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;$$("#filters button").forEach(x=>x.classList.toggle("on",x==b));renderShop(b.dataset.f)});
+
+function renderProduct(id){const p=PRODUCTS.find(x=>x.id==id);if(!p){location.hash="shop";return}
+ $("#pd").innerHTML=`<a class="back" href="#shop">← Back to shop</a><div class="pd"><img src="${IMG[p.img]}" alt="${esc(p.name)}">
+ <div><span class="hand">${p.tag}</span><h1>${esc(p.name)}</h1><p class="desc">${esc(p.desc)}</p>
+ <div class="incl"><b>What's inside</b><ul>${p.incl.map(i=>`<li>${esc(i)}</li>`).join("")}</ul></div>
+ <form id="enq">
+ <div class="field"><label>${p.opts.label}</label><div class="opts">${p.opts.list.map((o,i)=>`<label><input type="radio" name="opt" value="${i}" ${i==0?"checked":""}><span>${esc(o)}</span></label>`).join("")}</div></div>
+ <div class="field"><label for="pref">${p.custom?"Your preferences":"Anything specific? (optional)"}</label><textarea id="pref" placeholder="${p.custom?"Reader's age, favourite genres, a title you'd like, colours, gift-tag message…":"Age group, title, genre or quantity…"}"></textarea></div>
+ <button class="btn wa" type="submit"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>Enquire on WhatsApp</button>
+ <p class="note">Opens WhatsApp to +974 3118 4426 with your enquiry ready to send. We reply with availability and pricing.</p></form></div></div>`;
+ const f=$("#enq");
+ f.addEventListener("submit",e=>{e.preventDefault();window.open(waLink(p,p.opts.list[f.opt.value],$("#pref").value.trim()),"_blank");toast("Enquiry opened in WhatsApp")});
+}
+
+const DOCS={
+terms:`<span class="eyebrow">Legal</span><h1>Terms &amp; Conditions</h1><p class="upd">Last updated: 11 November 2026</p>
+<div class="reg"><strong>Nest a Nook Gifts and Stationery WLL</strong>, a limited liability company (WLL) registered in the State of Qatar under Commercial Registration No. <strong>256542</strong>, operating the website <strong>nestanook.qa</strong>. Contact: nestanook@gmail.com · +974 3118 4426.</div>
+<h2>1. Acceptance</h2><p>By browsing nestanook.qa or placing an order, you agree to these Terms, our Privacy Policy, our Return &amp; Refund Policy and our Shipping &amp; Delivery Policy. These Terms are issued in line with Qatar Law No. (16) of 2010 on Electronic Commerce and Transactions and Law No. (8) of 2008 on Consumer Protection and its implementing regulations.</p>
+<h2>2. Eligibility</h2><p>You must be at least 18 years old, or use the site under the supervision of a parent or guardian, to place an order. You agree to provide accurate name, contact and delivery details.</p>
+<h2>3. Products &amp; condition</h2><ul><li>We sell new and pre-loved (second-hand) books, puzzles, games, craft kits and gift hampers.</li><li>Every pre-loved item is inspected and labelled with a condition grade: <strong>Like New</strong>, <strong>Very Good</strong> or <strong>Good</strong>. Light signs of previous use consistent with the stated grade are not a defect.</li><li>Product photos are representative. Colours, packaging, editions and hamper contents may vary slightly with availability; we will substitute with an item of equal or greater value and tell you before dispatch.</li><li>Craft kits contain small parts and are intended for the stated age group under adult supervision.</li></ul>
+<h2>4. Enquiries, pricing &amp; payment</h2><ul><li>Products are ordered by enquiry. Send us your request on WhatsApp (+974 3118 4426) or email, and we will reply with availability, price in Qatari Riyal (QAR) and any delivery charge before you confirm.</li><li>The price and delivery charge we confirm in writing for your order are final for that order.</li><li>Accepted payment methods are confirmed with your quote and may include cash on delivery, card on delivery and bank transfer.</li><li>Nest a Nook does not ask for or store card numbers over WhatsApp or email.</li></ul>
+<h2>5. Orders &amp; acceptance</h2><p>An order is accepted only when you approve our quote and we confirm it by WhatsApp, SMS or email. We may decline or cancel an order for stock unavailability, suspected fraud, or incomplete delivery information; any amount paid will be refunded in full.</p>
+<h2>6. Customized hampers</h2><p>Customizable Reader's Hampers and "Gifts with a Purpose" boxes are prepared to your instructions. Please check names, gift messages and preferences carefully. Changes are possible only before preparation begins.</p>
+<h2>7. Intellectual property</h2><p>All site content, including the Nest a Nook name, logo, text and photographs, belongs to Nest a Nook Gifts and Stationery WLL or its licensors and may not be copied without written permission. Book titles and brand names belong to their respective owners.</p>
+<h2>8. Acceptable use</h2><p>You may not misuse the site, attempt unauthorized access, submit false orders, or use the site for any unlawful purpose under the laws of the State of Qatar, including Law No. (14) of 2014 on Combating Cybercrimes.</p>
+<h2>9. Liability</h2><p>To the extent permitted by Qatari law, our liability for any order is limited to the amount paid for that order. Nothing in these Terms limits your statutory rights as a consumer.</p>
+<h2>10. Complaints</h2><p>Contact us first at nestanook@gmail.com or +974 3118 4426; we aim to respond within 2 working days. You may also contact the Consumer Protection Department of the Ministry of Commerce and Industry, Qatar.</p>
+<h2>11. Governing law</h2><p>These Terms are governed by the laws of the State of Qatar. The courts of Qatar have exclusive jurisdiction. If the Arabic and English versions differ, the Arabic version prevails where required by law.</p>
+<h2>12. Changes</h2><p>We may update these Terms. The version published on the site when you place an order applies to that order.</p>`,
+privacy:`<span class="eyebrow">Legal</span><h1>Privacy Policy</h1><p class="upd">Last updated: 11 November 2026</p>
+<div class="reg">This policy explains how <strong>Nest a Nook Gifts and Stationery WLL</strong> (CR No. 256542) collects and protects personal data, in line with Qatar Law No. (13) of 2016 on the Protection of Personal Data Privacy.</div>
+<h2>1. Data we collect</h2><ul><li><strong>Enquiry and order details:</strong> name, mobile number, email, delivery area and address, gift message and hamper preferences.</li><li><strong>Payment details:</strong> handled by our licensed payment provider; we receive only a payment confirmation.</li><li><strong>Messages:</strong> what you send us by WhatsApp, email or the contact form.</li><li><strong>Technical data:</strong> basic device, browser and usage data.</li></ul>
+<h2>2. How we use it</h2><ul><li>To process, deliver and support your order, including returns and refunds.</li><li>To reply to your questions and custom requests.</li><li>To send offers and updates, only with your consent. You can opt out at any time.</li><li>To meet legal, tax and accounting obligations in Qatar.</li></ul>
+<h2>3. Legal basis</h2><p>We process your data to perform our contract with you, to comply with the law, for our legitimate interest in running the shop, or with your consent for marketing.</p>
+<h2>4. Sharing</h2><p>We share data only with service providers who help us run the shop, such as delivery partners, payment providers, and messaging and hosting services, and only as needed. We never sell personal data. We disclose data to authorities only where Qatari law requires it.</p>
+<h2>5. Children</h2><p>Many products are for children, but orders must be placed by adults. We do not knowingly collect personal data directly from children.</p>
+<h2>6. Retention &amp; security</h2><p>We keep order records for as long as required for accounting and legal purposes, and delete or anonymize other data when no longer needed. We use reasonable administrative, technical and physical safeguards to protect your data.</p>
+<h2>7. Cross-border transfer</h2><p>Some service providers may store data outside Qatar. Where this happens, we take steps to make sure your data receives an adequate level of protection, as required by Law No. (13) of 2016.</p>
+<h2>8. Your rights</h2><p>You may ask to access, correct or delete your personal data, withdraw consent, or object to processing. Email nestanook@gmail.com and we will respond within 30 days.</p>
+<h2>9. Cookies</h2><p>The site does not use tracking cookies. If analytics cookies are added, we will ask for your consent first.</p>
+<h2>10. Contact</h2><p>Nest a Nook Gifts and Stationery WLL, Doha, Qatar · nestanook@gmail.com · +974 3118 4426.</p>`,
+refund:`<span class="eyebrow">Legal</span><h1>Return &amp; Refund Policy</h1><p class="upd">Last updated: 11 November 2026</p>
+<div class="reg">This policy applies to orders placed on nestanook.qa with <strong>Nest a Nook Gifts and Stationery WLL</strong> (CR No. 256542) and does not affect your rights under Qatar Law No. (8) of 2008 on Consumer Protection.</div>
+<h2>1. Damaged, defective or wrong items</h2><p>If an item arrives damaged, defective, incomplete, or different from what you ordered or from its stated condition grade, contact us within <strong>7 days of delivery</strong> with your order number and photos. We will offer a replacement, repair, or full refund at your choice, and collect the item at no cost to you.</p>
+<h2>2. Change of mind</h2><ul><li>New books, puzzles, games and craft kits may be returned within <strong>7 days of delivery</strong> if unused, complete and in original packaging with seals intact.</li><li>Pre-loved items may be returned within <strong>3 days of delivery</strong> if they are in the same condition as received.</li><li>For change-of-mind returns, the customer covers the return delivery fee, which we confirm when you request the return.</li></ul>
+<h2>3. Non-returnable items</h2><p>Unless faulty or not as described, we cannot accept returns of:</p><ul><li>Customized Reader's Hampers and "Gifts with a Purpose" boxes made to your instructions.</li><li>Opened or used craft kits, paints and plaster materials.</li><li>Scented candles and other personal-care accents once unsealed.</li><li>Gift cards and items marked "final sale".</li></ul>
+<h2>4. How to request a return</h2><ul><li>WhatsApp +974 3118 4426 or email nestanook@gmail.com with your name, order number, item and reason.</li><li>We confirm eligibility within 2 working days and arrange collection or drop-off.</li><li>Items are inspected on arrival.</li></ul>
+<h2>5. Refunds</h2><ul><li>Approved refunds are issued to the original payment method. Cash on Delivery orders are refunded by bank transfer or store credit, at your choice.</li><li>Refunds are processed within <strong>7 working days</strong> of approval. Card refunds may take up to 14 days to appear, depending on your bank.</li><li>Original delivery fees are refunded when the return is due to our error.</li></ul>
+<h2>6. Exchanges</h2><p>We are happy to exchange an eligible item for another product or condition grade, subject to stock. Any price difference will be charged or refunded.</p>
+<h2>7. Cancellations</h2><p>You may cancel free of charge before your order is dispatched, or before preparation begins for customized hampers. Once a hamper has been prepared, it can no longer be cancelled.</p>`,
+shipping:`<span class="eyebrow">Legal</span><h1>Shipping &amp; Delivery</h1><p class="upd">Last updated: 11 November 2026</p>
+<div class="reg">Nest a Nook Gifts and Stationery WLL (CR No. 256542) delivers within the State of Qatar only.</div>
+<h2>1. Delivery areas &amp; times</h2><ul><li>We deliver to all areas of Qatar.</li><li>The expected delivery date is confirmed with your order on WhatsApp.</li><li>Customized hampers need extra time for preparation, which we tell you when you order.</li></ul>
+<h2>2. Delivery charges</h2><ul><li>Any delivery charge for your area is quoted before you confirm the order.</li><li>Same-day delivery in Doha may be available on request.</li></ul>
+<h2>3. Order confirmation</h2><p>We confirm your order, total and delivery slot by WhatsApp or phone before dispatch. Please keep your phone reachable on the delivery day.</p>
+<h2>4. Failed delivery</h2><p>If we cannot reach you after two attempts, we will contact you to reschedule. A second delivery may be charged.</p>
+<h2>5. Inspection on delivery</h2><p>Please check your parcel when it arrives and report any visible damage within 7 days, following our Return &amp; Refund Policy.</p>
+<h2>6. Delays</h2><p>Delivery times are estimates. We will tell you promptly about delays caused by weather, public holidays or events beyond our control.</p>`
+};
+function renderDoc(k){$("#doc").innerHTML=DOCS[k];$$("#legalnav a").forEach(a=>a.classList.toggle("on",a.dataset.doc==k))}
+
+$("#cform").addEventListener("submit",e=>{e.preventDefault();const n=$("#c-name").value.trim(),m=$("#c-msg").value.trim();
+ if(!n||!m){$("#c-err").textContent="Add your name and a message first.";return}$("#c-err").textContent="";
+ window.open("https://wa.me/97431184426?text="+encodeURIComponent(`Hello Nest a Nook,\n\nTopic: ${$("#c-topic").value}\nName: ${n}\nMobile: ${$("#c-phone").value.trim()}\n\n${m}`),"_blank");toast("Message opened in WhatsApp")});
+$$(".copy").forEach(b=>b.addEventListener("click",()=>{const t=b.dataset.copy;navigator.clipboard?.writeText(t).then(()=>toast("Copied "+t),()=>toast(t))}));
+
+$("#menu").onclick=()=>{const o=$("#links").classList.toggle("open");$("#menu").setAttribute("aria-expanded",o)};
+
+function route(){const h=(location.hash||"#home").slice(1);let v=h,nav=h;
+ if(h.startsWith("product-")){v="product";nav="shop";renderProduct(h.slice(8))}
+ else if(DOCS[h]){v="legal";nav="legal";renderDoc(h)}
+  else if(!["home","shop","about","contact"].includes(h)){v="home";nav="home"}
+ $$(".view").forEach(x=>x.classList.toggle("on",x.id=="v-"+v));
+ $$("[data-nav]").forEach(a=>a.classList.toggle("on",a.dataset.nav==nav));
+ $("#links").classList.remove("open");window.scrollTo(0,0)}
+addEventListener("hashchange",route);route();
+$("#yr").textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html>
